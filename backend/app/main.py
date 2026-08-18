@@ -1,8 +1,12 @@
 from fastapi import FastAPI
+from app.config.settings import settings
 
-app = FastAPI()
+app = FastAPI(title=settings.app_name)
 
 
 @app.get("/")
 def root():
-    return {"message": "AI Research Assistant API is running"}
+    return {
+        "message": "AI Research Assistant API is running",
+        "environment": settings.app_env,
+    }
